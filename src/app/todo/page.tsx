@@ -1,3 +1,4 @@
+import { Button } from "~/components/ui/button";
 import prisma from "~/lib/prisma";
 
 export default async function Page() {
@@ -14,7 +15,7 @@ export default async function Page() {
           });
         }}
       >
-        <button type="submit">削除</button>
+        <Button type="submit">削除</Button>
       </form>
       <ul className="mt-8">
         {todos.map((todo) => (
