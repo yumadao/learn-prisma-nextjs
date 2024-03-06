@@ -1,8 +1,8 @@
 import { Button } from "~/components/ui/button";
-import prisma from "~/lib/prisma";
+import { getAllTodos } from "~/utils/data";
 
 export default async function Page() {
-  const todos = await prisma.todo.findMany();
+  const todos = await getAllTodos();
 
   return (
     <div className="m-8">
