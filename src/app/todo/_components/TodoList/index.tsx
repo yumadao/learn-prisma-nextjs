@@ -27,7 +27,7 @@ export const TodoList = ({ todos }: Props) => {
       </TableHeader>
       <TableBody>
         {todos.map((todo) => {
-          return <TodoItem todo={todo} />;
+          return <TodoItem key={todo.id} todo={todo} />;
         })}
       </TableBody>
     </Table>
