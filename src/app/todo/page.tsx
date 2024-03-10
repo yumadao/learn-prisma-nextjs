@@ -1,7 +1,9 @@
 import { getAllTodos } from "~/utils/data";
 import { TodoList } from "./_components/TodoList";
 
-export default async function Page() {
+export const dynamic = "force-dynamic";
+
+export default async function TodoPage() {
   const todos = await getAllTodos();
 
   return (

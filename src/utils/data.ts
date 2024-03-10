@@ -12,7 +12,10 @@ export type Todo = {
 export type PostTodoRequest = Pick<Todo, "title" | "description">;
 
 export const getAllTodos = async (): Promise<Todo[]> => {
-  const res = await fetch(`${API_BASE_URL}`, { method: "GET" });
+  const res = await fetch(`${API_BASE_URL}`, {
+    method: "GET",
+    next: { tags: ["todos"] },
+  });
   const data: Todo[] = await res.json();
   return data;
 };

@@ -1,13 +1,68 @@
-import React from "react";
-import { Button } from "../ui/button";
+import { Button } from "~/components/ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "~/components/ui/sheet";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
+import { addTodo } from "~/utils/data";
 
 export const Header = () => {
   return (
     <div className="flex flex-row justify-between items-center h-20 text-white bg-slate-800">
       <div className="ml-5">Header</div>
-      <Button className="rounded-full bg-amber-100 hover:bg-amber-50 active:bg-amber-200 text-black mr-10">
-        +
-      </Button>
+      <div className="mr-5">
+        <SideMenu />
+      </div>
     </div>
   );
 };
+
+function SideMenu() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button
+          variant="outline"
+          className="rounded-full bg-black outline-white"
+        >
+          +
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="flex flex-col items-center gap-10">
+        <form
+          action={async (formData) => {
+            "use server";
+            const title = formData.get("title") as string;
+            const description = formData.get("description") as string;
+            await addTodo({ title, description });
+          }}
+        >
+          <SheetHeader>
+            <SheetTitle>Add todo</SheetTitle>
+            <SheetDescription>
+              Make writes to your todo here. Click save when youre done.
+            </SheetDescription>
+          </SheetHeader>
+          <Input type="text" name="title" placeholder="タイトル" />
+          <Textarea
+            name="description"
+            placeholder="詳細"
+            className="h-40 mb-auto"
+          />
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button type="submit">Save</Button>
+            </SheetClose>
+          </SheetFooter>
+        </form>
+      </SheetContent>
+    </Sheet>
+  );
+}
