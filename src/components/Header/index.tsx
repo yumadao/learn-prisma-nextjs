@@ -12,11 +12,15 @@ import {
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { addTodo } from "~/utils/data";
+import { revalidateTag } from "next/cache";
+import { TodoLogo } from "../TodoLogo";
 
 export const Header = () => {
   return (
     <div className="flex flex-row justify-between items-center h-20 text-white bg-slate-800">
-      <div className="ml-5">Header</div>
+      <div className="ml-5">
+        <TodoLogo />
+      </div>
       <div className="mr-5">
         <SideMenu />
       </div>
@@ -36,25 +40,27 @@ function SideMenu() {
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col items-center gap-10">
+        <SheetHeader>
+          <SheetTitle>Add todo</SheetTitle>
+          <SheetDescription>
+            Make writes to your todo here. Click save when youre done.
+          </SheetDescription>
+        </SheetHeader>
         <form
           action={async (formData) => {
             "use server";
             const title = formData.get("title") as string;
             const description = formData.get("description") as string;
             await addTodo({ title, description });
+            revalidateTag("todos");
           }}
+          className="flex flex-col gap-5 w-5/6 items-center"
         >
-          <SheetHeader>
-            <SheetTitle>Add todo</SheetTitle>
-            <SheetDescription>
-              Make writes to your todo here. Click save when youre done.
-            </SheetDescription>
-          </SheetHeader>
           <Input type="text" name="title" placeholder="タイトル" />
           <Textarea
             name="description"
             placeholder="詳細"
-            className="h-40 mb-auto"
+            className="h-80 mb-auto"
           />
           <SheetFooter>
             <SheetClose asChild>
