@@ -43,7 +43,8 @@ function SideMenu() {
         <SheetHeader>
           <SheetTitle>Add todo</SheetTitle>
           <SheetDescription>
-            Make writes to your todo here. Click save when youre done.
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
+            Make writes to your todo here. Click save when you're done.
           </SheetDescription>
         </SheetHeader>
         <form
