@@ -7,7 +7,7 @@ import {
   TableRow,
 } from "~/components/ui/table";
 import { Todo } from "~/utils/data";
-import { TodoItem } from "../TodoItem";
+import { TodoItem } from "../todoItem";
 
 type Props = {
   todos: Todo[];

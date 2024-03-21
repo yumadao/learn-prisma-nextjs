@@ -1,5 +1,5 @@
 import { getAllTodos } from "~/utils/data";
-import { TodoList } from "./_components/TodoList";
+import { TodoList } from "./_components/todoList";
 
 export const dynamic = "force-dynamic";
 
