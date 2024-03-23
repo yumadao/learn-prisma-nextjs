@@ -18,13 +18,13 @@ export const getAllTodos = async (): Promise<Todo[]> => {
     method: "GET",
     next: { tags: ["todos"] },
   })
-    .then((res) => handleSuccess<Todo[]>(res))
+    .then(handleSuccess<Todo[]>)
     .catch(handleFailed);
 };
 
 export const getTodoById = async (id: number): Promise<Todo> => {
   return fetch(`${API_BASE_URL}/${id}`, { method: "GET" })
-    .then((res) => handleSuccess<Todo>(res))
+    .then(handleSuccess<Todo>)
     .catch(handleFailed);
 };
 
@@ -33,12 +33,12 @@ export const addTodo = async (req: PostTodoRequest): Promise<Todo> => {
     method: "POST",
     body: JSON.stringify(req),
   })
-    .then((res) => handleSuccess<Todo>(res))
+    .then(handleSuccess<Todo>)
     .catch(handleFailed);
 };
 
 export const deleteTodo = async (id: number): Promise<Todo> => {
   return fetch(`${API_BASE_URL}/${id}`, { method: "DELETE" })
-    .then((res) => handleSuccess<Todo>(res))
+    .then(handleSuccess<Todo>)
     .catch(handleFailed);
 };
