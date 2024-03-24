@@ -16,7 +16,7 @@ export const handleSuccess = async <T>(res: Response): Promise<T> => {
 
 export const handleFailed = async (err: unknown) => {
   if (err instanceof FetchError) {
-    console.warn(err.message);
+    console.error(err.message);
   }
   throw err;
 };
