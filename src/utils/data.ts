@@ -12,6 +12,7 @@ export type Todo = {
 };
 
 export type PostTodoRequest = Pick<Todo, "title" | "description">;
+export type PutTodoRequest = Pick<Todo, "id" | "title" | "description">;
 
 export const getAllTodos = async (): Promise<Todo[]> => {
   return fetch(`${API_BASE_URL}`, {
@@ -32,6 +33,16 @@ export const addTodo = async (req: PostTodoRequest): Promise<Todo> => {
   return fetch(`${API_BASE_URL}`, {
     method: "POST",
     body: JSON.stringify(req),
+  })
+    .then(handleSuccess<Todo>)
+    .catch(handleFailed);
+};
+
+export const updateTodo = async (req: PutTodoRequest): Promise<Todo> => {
+  const { id, title, description } = req;
+  return fetch(`${API_BASE_URL}/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ title, description }),
   })
     .then(handleSuccess<Todo>)
     .catch(handleFailed);
