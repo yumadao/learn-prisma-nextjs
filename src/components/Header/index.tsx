@@ -13,7 +13,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { addTodo } from "~/utils/data";
 import { revalidateTag } from "next/cache";
-import { TodoLogo } from "../TodoLogo";
+import { TodoLogo } from "../todoLogo";
 
 export const Header = () => {
   return (
